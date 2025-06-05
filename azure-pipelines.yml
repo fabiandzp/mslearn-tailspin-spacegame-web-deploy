@@ -28,8 +28,7 @@ stages:
 
     - task: NodeTool@0
       inputs:
-        versionSpec: '20.x' # Installs the latest Node.js 20.x.x version
-        displayName: 'Install Node.js 20'
+        versionSpec: '14.x'
 
     - task: Npm@1
       displayName: 'Run npm install'
