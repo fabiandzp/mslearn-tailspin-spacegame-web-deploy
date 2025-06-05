@@ -26,9 +26,10 @@ stages:
       inputs:
         version: '$(dotnetSdkVersion)'
 
-    - task: NuGetToolInstaller@0
+    - task: NodeTool@0
       inputs:
-        versionSpec: '5.9.1'
+        versionSpec: '20.x' # Installs the latest Node.js 20.x.x version
+        displayName: 'Install Node.js 20'
 
     - task: Npm@1
       displayName: 'Run npm install'
