@@ -26,6 +26,10 @@ stages:
       inputs:
         version: '$(dotnetSdkVersion)'
 
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '14.x'
+
     - task: Npm@1
       displayName: 'Run npm install'
       inputs:
@@ -111,6 +115,7 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               appName: '$(WebAppNameTest)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+              
   - job: RunUITests
     dependsOn: Deploy
     displayName: 'Run UI tests'
