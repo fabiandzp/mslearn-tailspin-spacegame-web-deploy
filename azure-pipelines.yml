@@ -11,7 +11,7 @@ stages:
   - job: 'Build'
     displayName: 'Build job'
     pool:
-      vmImage: 'ubuntu-20.04'
+      vmImage: 'ubuntu-24.04'
       demands:
       - npm
 
@@ -24,6 +24,10 @@ stages:
       displayName: 'Use .NET SDK $(dotnetSdkVersion)'
       inputs:
         version: '$(dotnetSdkVersion)'
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '14.x'
 
     - task: Npm@1
       displayName: 'Run npm install'
@@ -71,7 +75,7 @@ stages:
   jobs:
   - deployment: Deploy
     pool:
-      vmImage: 'ubuntu-20.04'
+      vmImage: 'ubuntu-24.04'
     environment: dev
     variables:
     - group: Release
@@ -94,7 +98,7 @@ stages:
   jobs:
   - deployment: Deploy
     pool:
-      vmImage: 'ubuntu-20.04'
+      vmImage: 'ubuntu-24.04'
     environment: test
     variables:
     - group: 'Release'
@@ -117,7 +121,7 @@ stages:
   jobs:
   - deployment: Deploy
     pool:
-      vmImage: 'ubuntu-20.04'
+      vmImage: 'ubuntu-24.04'
     environment: staging
     variables:
     - group: 'Release'
